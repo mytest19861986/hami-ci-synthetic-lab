@@ -1,3 +1,3 @@
-# Synthetic CI lab
+# Synthetic Prisma contract laboratory
 
-This public repository contains only a synthetic GitHub Actions smoke test. It contains no HamiCard source and is not for production or product testing.
+Independent illustrative models and data only. No application code, production data or credentials. No execution, publication or transfer has been authorized in this phase. Package lock, workflow and tests require completion and review; no test result may be claimed.

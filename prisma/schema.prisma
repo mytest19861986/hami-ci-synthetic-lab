@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model Vessel {
+  id      Int      @id @default(autoincrement())
+  epoch   Int      @default(1)
+  retired Boolean  @default(false)
+  tickets Ticket[]
+}
+model Ticket {
+  id       Int    @id @default(autoincrement())
+  vesselId Int
+  vessel   Vessel @relation(fields: [vesselId], references: [id])
+  epoch    Int
+  consumed Boolean @default(false)
+  notes    Note[]
+}
+model Note {
+  id       Int    @id @default(autoincrement())
+  ticketId Int
+  ticket   Ticket @relation(fields: [ticketId], references: [id])
+  marker   String @unique
+}

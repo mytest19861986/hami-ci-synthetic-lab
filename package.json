@@ -1,0 +1,8 @@
+{
+  "name": "synthetic-prisma-contract-lab",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {"@prisma/client": "6.19.2"},
+  "devDependencies": {"prisma": "6.19.2", "typescript": "5.8.3"},
+  "scripts": {"typecheck": "tsc --noEmit", "test": "node --test tests/*.test.cjs"}
+}
