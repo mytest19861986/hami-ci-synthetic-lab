@@ -1,0 +1,29 @@
+name: Synthetic runner smoke
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Select Node 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Run synthetic assertion
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --version
+          mkdir synthetic-smoke
+          cat > synthetic-smoke/smoke.test.cjs <<'EOF'
+          const test = require('node:test');
+          const assert = require('node:assert/strict');
+          test('synthetic calculation', () => {
+            const values = [2, 3, 5];
+            assert.equal(values.reduce((total, value) => total + value, 0), 10);
+          });
+          EOF
+          node --test synthetic-smoke/smoke.test.cjs
